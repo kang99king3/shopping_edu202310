@@ -54,7 +54,6 @@ public class MemberController extends HttpServlet{
 			}
 		}else if(command.equals("/registForm.member")) {
 			dispatch("member/registForm.jsp", request, response);
-//			response.sendRedirect("member/registForm.jsp");
 		}else if(command.equals("/regist.member")) {
 			String email=request.getParameter("email");
 			String name=request.getParameter("name");
@@ -70,9 +69,8 @@ public class MemberController extends HttpServlet{
 				}
 			}else {
 				System.out.println(dao.emailCheck(email));
-				response.sendRedirect("member/registForm.jsp?msg="
-						+URLEncoder.encode("이미 가입된 회원입니다.", "utf-8"));
-				
+				request.setAttribute("msg", "이미 가입된 회원립니다.");
+				dispatch("member/registForm.jsp", request, response);
 			}
 		}else if(command.equals("/logout.member")) {
 			session.invalidate();

@@ -30,7 +30,7 @@
 				if(ldto.getRole().equals("ADMIN")){
 				%>
 			        <li class="nav-item" ><a class="nav-link" href="addItemForm.item">상품등록</a></li> 
-				    <li class="nav-item" ><a class="nav-link" href="admin/items">상품 관리</a></li>				
+				    <li class="nav-item" ><a class="nav-link" href="itemDetail.item">상품 관리</a></li>				
 				<%
 				}else if(ldto.getRole().equals("USER")){
 					%>
@@ -65,7 +65,7 @@
 						%>
 						<div class="item" style="display: inline-block;width: 250px;margin:5px;">
 							<a href="detail.item?item_id=<%=dto.getItem_id()%>">
-								<img width="250px" height="300px" src="https://atimg.sonyunara.com/files/attrangs/goods/155321/1695399861_0.gif" alt="<%=dto.getItem_name()%>"/>
+								<img width="250px" height="300px" src="<%="upload/"+dto.getItemImgDto().getImg_name()%>" alt="<%=dto.getItem_name()%>"/>
 							</a>
 							<div><%=dto.getPrice()%></div>
 							<div><%=dto.getItem_name()%></div>
