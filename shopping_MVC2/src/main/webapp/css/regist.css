@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.form-group{
+	width:800px;
+	margin:0 auto;
+}
+.form-group  input{
+	width:100%;
+	padding:10px;
+	margin: 2px;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+.form-group  button{
+	padding:8px;
+	margin: 2px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	background-color: blue;
+	color:white;
+}
+.form-group div{
+	margin: 5px;
+}
