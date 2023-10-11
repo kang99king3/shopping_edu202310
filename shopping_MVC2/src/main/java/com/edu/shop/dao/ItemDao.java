@@ -24,9 +24,11 @@ public class ItemDao extends DataBase{
 	public List<ItemDto> itemList(){
 		List<ItemDto> list=new ArrayList<>();
 		
-		String sql="SELECT item_id, item_name, price "
-				+ " FROM item "
-				+ " order by reg_date ";
+		String sql=" SELECT i.item_id,i.item_name, i.price, m.img_url, "
+				 + " m.img_name "
+				 + " FROM item i JOIN item_img m "
+				 + " ON i.item_id = m.item_id  "
+				 + " ORDER BY i.reg_date DESC ";
 		
 		try {
 			conn=dataFactory.getConnection();
@@ -34,9 +36,13 @@ public class ItemDao extends DataBase{
 			rs=psmt.executeQuery();
 			while(rs.next()) {
 				ItemDto dto=new ItemDto();
+				ItemImgDto mdto=new ItemImgDto();
 				dto.setItem_id(rs.getInt(1));
 				dto.setItem_name(rs.getString(2));
 				dto.setPrice(rs.getInt(3));
+				mdto.setImg_url(rs.getString(4));
+				mdto.setImg_name(rs.getString(5));
+				dto.setItemImgDto(mdto);
 				list.add(dto);
 			}
 		} catch (SQLException e) {

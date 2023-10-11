@@ -11,6 +11,9 @@ public class ItemDto {
 	private int stock_number;
 	private Date reg_date;
 	private Date up_date;
+	
+	private ItemImgDto itemImgDto;
+	
 	public ItemDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -83,6 +86,13 @@ public class ItemDto {
 	}
 	public void setUp_date(Date up_date) {
 		this.up_date = up_date;
+	}
+	
+	public ItemImgDto getItemImgDto() {
+		return itemImgDto;
+	}
+	public void setItemImgDto(ItemImgDto itemImgDto) {
+		this.itemImgDto = itemImgDto;
 	}
 	@Override
 	public String toString() {
