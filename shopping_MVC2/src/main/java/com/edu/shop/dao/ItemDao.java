@@ -54,7 +54,7 @@ public class ItemDao extends DataBase{
 		return list;
 	}
 	
-	//상품등록하기
+	//admin:상품등록하기
 	public boolean addItem(ItemDto dto) {
 		int count=0;
 		String sql ="insert into item value(null, ?,?,?,?,?,sysdate(),null)";
@@ -76,7 +76,7 @@ public class ItemDao extends DataBase{
 		return count>0?true:false;
 	}
 	
-	//상품등록하기
+	//admin:상품 이미지 등록하기
 	public boolean addItemImg(ItemImgDto dto) {
 		int count=0;
 		String sql ="insert into item_img value(null,"
@@ -101,15 +101,46 @@ public class ItemDao extends DataBase{
 		
 		return count>0?true:false;
 	}
-	/*
-	 * SELECT AUTO_INCREMENT
+	
+	//admin:상품관리 상세보기
+	public ItemDto itemDetailMg(int item_id){
+		
+		ItemDto dto=new ItemDto();
+		ItemImgDto mdto=new ItemImgDto();
+	
+		String sql=" SELECT i.item_id,i.item_name,i.item_detail, "
+				+ "         i.item_sell_status, i.price, "
+				+ "		    i.stock_number,m.item_img_id, m.img_url, m.img_name "
+				+ " FROM item i JOIN item_img m "
+				+ " ON i.item_id = m.item_id "
+				+ " WHERE i.item_id = ? ";
+		
+		try {
+			conn=dataFactory.getConnection();
+			psmt=conn.prepareStatement(sql);
+			psmt.setInt(1, item_id);
+			rs=psmt.executeQuery();
+			while(rs.next()) {
+				dto.setItem_id(rs.getInt(1));
+				dto.setItem_name(rs.getString(2));
+				dto.setItem_detail(rs.getString(3));
+				dto.setItem_sell_status(rs.getString(4));
+				dto.setPrice(rs.getInt(5));
+				dto.setStock_number(rs.getInt(6));
+				mdto.setItem_img_id(rs.getInt(7));
+				mdto.setImg_url(rs.getString(8));
+				mdto.setImg_name(rs.getString(9));
+				dto.setItemImgDto(mdto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs, psmt, conn);
+		}
+		
+		return dto;
+	}
 
-FROM information_schema.tables
-
-WHERE table_name = 'table name'
-
-AND table_schema = DATABASE( ) ;
-	 */
 }
 
 

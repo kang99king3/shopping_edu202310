@@ -42,7 +42,7 @@ public class ItemController extends HttpServlet {
 			dispatch("main.jsp", request, response);
 		}else if(command.equals("/addItemForm.item")) {
 			System.out.print("상품등록폼");
-			response.sendRedirect("item/addItemForm.jsp");
+			dispatch("item/addItemForm.jsp", request, response);
 		}else if(command.equals("/addItem.item")) {
 			MultipartRequest multi=null;
 			
@@ -86,7 +86,12 @@ public class ItemController extends HttpServlet {
 						int file_size=(int)multi.getFile(file).length();
 						
 						//4.DB에 정보 저장하기
-						isS=dao.addItemImg(new ItemImgDto(0,stored_fname,saveDirectory,origin_fname,file.equals("itemImgFile0")?"Y":"N"));
+						isS=dao.addItemImg(
+								new ItemImgDto(0,
+											   stored_fname,
+											   saveDirectory,
+											   origin_fname,
+											   file.equals("itemImgFile0")?"Y":"N"));
 						
 						//getOriginalFileName("filename"): 원본파일명
 						//getFilesystemName("filename"): 실제로 저장된 파일명
