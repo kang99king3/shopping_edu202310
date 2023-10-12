@@ -27,7 +27,8 @@ public class ItemDao extends DataBase{
 		String sql=" SELECT i.item_id,i.item_name, i.price, m.img_url, "
 				 + " m.img_name "
 				 + " FROM item i JOIN item_img m "
-				 + " ON i.item_id = m.item_id  "
+				 + " ON i.item_id = m.item_id "
+				 + " where repimg_yn='Y' "
 				 + " ORDER BY i.reg_date DESC ";
 		
 		try {
