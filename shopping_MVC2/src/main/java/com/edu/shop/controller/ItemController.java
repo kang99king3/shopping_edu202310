@@ -37,6 +37,7 @@ public class ItemController extends HttpServlet {
 		ItemDao dao=new ItemDao();
 		
 		if(command.equals("/main.item")) {//메인페이지에 상품목록 보여주기
+			System.out.println("main화면");
 			List<ItemDto> list=dao.itemList();
 			request.setAttribute("list", list);
 			dispatch("main.jsp", request, response);
@@ -113,6 +114,8 @@ public class ItemController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else if(command.equals("/itemDetail.item")) {
+			
 		}
 	}
 
