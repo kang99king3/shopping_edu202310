@@ -1,6 +1,7 @@
 package com.edu.shop.dtos;
 
 import java.util.Date;
+import java.util.List;
 
 public class ItemDto {
 	private int item_id;
@@ -13,6 +14,7 @@ public class ItemDto {
 	private Date up_date;
 	
 	private ItemImgDto itemImgDto;
+	private List<ItemImgDto> itemImgDtoList;
 	
 	public ItemDto() {
 		super();
@@ -93,6 +95,14 @@ public class ItemDto {
 	}
 	public void setItemImgDto(ItemImgDto itemImgDto) {
 		this.itemImgDto = itemImgDto;
+	}
+	
+	
+	public List<ItemImgDto> getItemImgDtoList() {
+		return itemImgDtoList;
+	}
+	public void setItemImgDtoList(List<ItemImgDto> itemImgDtoList) {
+		this.itemImgDtoList = itemImgDtoList;
 	}
 	@Override
 	public String toString() {

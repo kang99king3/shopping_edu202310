@@ -1,3 +1,5 @@
+<%@page import="com.edu.shop.dtos.ItemImgDto"%>
+<%@page import="com.edu.shop.dtos.ItemDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,7 +7,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<style type="text/css">
+	.itemForm img {
+		width: 150px;
+		height: 150px;
+	}
+	/*label을 버튼으로 표현*/
+	.itemForm label[for] {
+		background-color: orange;
+		border: 1px solid gray;
+		border-radius: 2px;
+	}
+	
+	.itemForm label[for]:hover {
+		background-color: #FFB914;
+	}
+	
+	.itemForm input[type=file] {
+		display: none;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$(".itemForm input[type=file]").change(function(){
+			$(this).prev().text($(this).val());
+		});
+	})
+</script>
 </head>
+<%
+	ItemDto dto=(ItemDto)request.getAttribute("dto");
+%>
 <body>
 <div class="itemForm">
 <%-- 	<input type="hidden" id="error" th:value="${errorMessage}"/> --%>
@@ -46,28 +79,35 @@
         </div> 
         <div>
         	<%
-        		for(int i=0;i<5;i++){
+        		int size=dto.getItemImgDtoList().size();
+        		for(int i=0;i<size;i++){
+        			ItemImgDto mDto=dto.getItemImgDtoList().get(i);
         			%>
 		            <div>
-		                 <label>상품이미지 <%=i%></label>
-		                 <%
-		              		if(i==0){
-		              		%>
-		              		<input type="file" name="itemImgFile<%=i%>" required="required">
-		              		<%
-		              		}else{
-		              		%>
-		                    <input type="file" name="itemImgFile<%=i%>">		              			
-		              		<%
-		              		}
-		                 %>
+		                 <label ><%=mDto.getOri_img_name()%> <%=i%></label><br/>
+		                 <img src="upload/<%=mDto.getImg_name()%>"/>
+		                 <label for="<%=i%>">파일선택</label>
+		                 <span class="upload_filename"></span>
+		                 <input id="<%=i%>" type="file" name="itemImgFile<%=i%>">		              			
+		              	 <input type="hidden" name="item_id" value="<%=mDto.getItem_img_id()%>"	/>
+		            </div>	
+        			<%
+        		}
+        		for(int i=size;i<5;i++){
+        			%>
+		            <div>
+		                 <label>상품 이미지 <%=i%></label>
+		                 <label for="<%=i%>">파일선택</label>
+		                 <span class="upload_filename"></span>
+		                 <input id="<%=i%>" type="file" name="itemImgFile<%=i%>">		              			
+		              	 <input type="hidden" name="item_id"/>
 		            </div>	
         			<%
         		}
         	%>
         </div>
 		<div>
-	        <button type="submit">저장</button>
+	        <button type="submit">수정</button>
 		</div>
 
 	    </form>
