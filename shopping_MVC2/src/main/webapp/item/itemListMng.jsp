@@ -32,7 +32,7 @@
 		                <td>
 		                    <a href="itemDetialMng.item?item_id=<%=dto.getItem_id()%>"><%=dto.getItem_name()%></a>
 		                </td>
-						<td><%=dto.getItem_sell_status().equals("Y")?"판매중":"품절"%></td>
+						<td><%=dto.getItem_sell_status().equals("SELL")?"판매중":"품절"%></td>
 						<td><%=dto.getReg_date()%></td>
 		            </tr>            		
             		<%
