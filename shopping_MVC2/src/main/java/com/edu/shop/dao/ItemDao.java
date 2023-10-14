@@ -102,7 +102,34 @@ public class ItemDao extends DataBase{
 		
 		return count>0?true:false;
 	}
-	
+	//admin:상품관리-상품목록 보여주기
+		public List<ItemDto> itemListMng(){
+			List<ItemDto> list=new ArrayList<>();
+			
+			String sql=" SELECT item_id, item_name,item_sell_status,reg_date "
+					 + " FROM item "
+					 + " ORDER BY reg_date DESC ";
+			
+			try {
+				conn=dataFactory.getConnection();
+				psmt=conn.prepareStatement(sql);
+				rs=psmt.executeQuery();
+				while(rs.next()) {
+					ItemDto dto=new ItemDto();
+					dto.setItem_id(rs.getInt(1));
+					dto.setItem_name(rs.getString(2));
+					dto.setItem_sell_status(rs.getString(3));
+					dto.setReg_date(rs.getDate(4));
+					list.add(dto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs, psmt, conn);
+			}
+			
+			return list;
+		}
 	//admin:상품관리 상세보기
 	public ItemDto itemDetailMg(int item_id){
 		

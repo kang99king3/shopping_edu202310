@@ -114,8 +114,15 @@ public class ItemController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(command.equals("/itemDetail.item")) {
-			
+		}else if(command.equals("/itemMng.item")) {
+			List<ItemDto>list=dao.itemListMng();
+			request.setAttribute("list", list);
+			dispatch("item/itemListMng.jsp", request, response);
+		}else if(command.equals("/itemDetialMng.item")) {
+			int item_id=Integer.parseInt(request.getParameter("item_id"));
+			ItemDto dto=dao.itemDetailMg(item_id);
+			request.setAttribute("dto", dto);
+			dispatch("item/itemDetailMng.jsp", request, response);
 		}
 	}
 

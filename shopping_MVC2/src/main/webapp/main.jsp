@@ -30,7 +30,7 @@
 				if(ldto.getRole().equals("ADMIN")){
 				%>
 			        <li class="nav-item" ><a class="nav-link" href="addItemForm.item">상품등록</a></li> 
-				    <li class="nav-item" ><a class="nav-link" href="itemDetail.item">상품 관리</a></li>				
+				    <li class="nav-item" ><a class="nav-link" href="itemMng.item">상품 관리</a></li>				
 				<%
 				}else if(ldto.getRole().equals("USER")){
 					%>
