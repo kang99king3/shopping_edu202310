@@ -89,7 +89,7 @@
 		                 <label for="<%=i%>">파일선택</label>
 		                 <span class="upload_filename"></span>
 		                 <input id="<%=i%>" type="file" name="itemImgFile<%=i%>">		              			
-		              	 <input type="hidden" name="item_id" value="<%=mDto.getItem_img_id()%>"	/>
+		              	 <input type="hidden" name="item_img_id" value="<%=mDto.getItem_img_id()%>"	/>
 		            </div>	
         			<%
         		}
@@ -100,7 +100,7 @@
 		                 <label for="<%=i%>">파일선택</label>
 		                 <span class="upload_filename"></span>
 		                 <input id="<%=i%>" type="file" name="itemImgFile<%=i%>">		              			
-		              	 <input type="hidden" name="item_id"/>
+		              	 <input type="hidden" name="item_img_id"/>
 		            </div>	
         			<%
         		}
