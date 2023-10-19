@@ -8,9 +8,16 @@ import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
+//tomcat context.xml에 추가할 내용
+//	<Resource name="jdbc/mariadb/shop" auth="Container" 
+//			  type="javax.sql.DataSource"
+//            maxActive="10" maxIdle="3" maxWait="10000"
+//            username="root" 
+//            password="manager"
+//            driverClassName="org.mariadb.jdbc.Driver"
+//            url="jdbc:mysql://localhost:3306/hkedu2"
+//            closeMethod="close" />
 public class DataBase {
-	
 	protected DataSource dataFactory;
 	
 	public DataBase() {
