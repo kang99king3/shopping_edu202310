@@ -42,7 +42,7 @@
 <body>
 <div class="itemForm">
 <%-- 	<input type="hidden" id="error" th:value="${errorMessage}"/> --%>
-    <form class="form-group" action="addItem.item"  method="post" enctype="multipart/form-data" >
+    <form class="form-group" action="updateItem.item"  method="post" enctype="multipart/form-data" >
 		
         <p class="h2">
             ${dto.item_name}
