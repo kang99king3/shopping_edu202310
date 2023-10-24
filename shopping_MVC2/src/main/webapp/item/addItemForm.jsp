@@ -6,11 +6,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/regist.css"/>
+<script type="text/javascript">
+	function mainFileCheck(formEle){
+		if(formEle.itemImgFile1.value==""){
+			alert("메인 이미지는 필수입니다.");
+			return false;
+		}
+		return true;
+	}
+</script>
 </head>
 <body>
 <div class="itemForm">
 <%-- 	<input type="hidden" id="error" th:value="${errorMessage}"/> --%>
-    <form class="form-group" action="addItem.item"  method="post" enctype="multipart/form-data" >
+    <form class="form-group" action="addItem.item"  method="post" enctype="multipart/form-data" 
+    onsubmit="return mainFileCheck(this)" >
 		
         <p class="h2">
             상품 등록
@@ -47,21 +57,11 @@
         </div> 
         <div>
         	<%
-        		for(int i=0;i<5;i++){
+        		for(int i=1;i<=5;i++){
         			%>
 		            <div>
-		                 <label>상품이미지 <%=i%></label>
-		                 <%
-		              		if(i==0){
-		              		%>
-		              		<input type="file" name="itemImgFile<%=i%>" required="required">
-		              		<%
-		              		}else{
-		              		%>
-		                    <input type="file" name="itemImgFile<%=i%>">		              			
-		              		<%
-		              		}
-		                 %>
+		                 <label>상품이미지 <%=i==1?i+" [메인이미지]":i%></label>
+		              	 <input type="file" name="itemImgFile<%=i%>">
 		            </div>	
         			<%
         		}
