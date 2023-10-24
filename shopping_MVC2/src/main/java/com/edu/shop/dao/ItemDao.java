@@ -134,11 +134,11 @@ public class ItemDao extends DataBase{
 	public ItemDto itemDetailMg(int item_id){
 		
 		ItemDto dto=new ItemDto();
-		ItemImgDto mdto=new ItemImgDto();
+		List<ItemImgDto>list=new ArrayList<>();
 	
 		String sql=" SELECT i.item_id,i.item_name,i.item_detail, "
 				+ "         i.item_sell_status, i.price, "
-				+ "		    i.stock_number,m.item_img_id, m.img_url, m.img_name "
+				+ "		    i.stock_number,m.item_img_id, m.img_url, m.ori_img_name, m.img_name "
 				+ " FROM item i JOIN item_img m "
 				+ " ON i.item_id = m.item_id "
 				+ " WHERE i.item_id = ? ";
@@ -148,18 +148,27 @@ public class ItemDao extends DataBase{
 			psmt=conn.prepareStatement(sql);
 			psmt.setInt(1, item_id);
 			rs=psmt.executeQuery();
+			int count=0;
 			while(rs.next()) {
-				dto.setItem_id(rs.getInt(1));
-				dto.setItem_name(rs.getString(2));
-				dto.setItem_detail(rs.getString(3));
-				dto.setItem_sell_status(rs.getString(4));
-				dto.setPrice(rs.getInt(5));
-				dto.setStock_number(rs.getInt(6));
+				//1대n 관계 매핑
+				if(count==0) {
+					dto.setItem_id(rs.getInt(1));
+					dto.setItem_name(rs.getString(2));
+					dto.setItem_detail(rs.getString(3));
+					dto.setItem_sell_status(rs.getString(4));
+					dto.setPrice(rs.getInt(5));
+					dto.setStock_number(rs.getInt(6));					
+					count=1;
+				}
+				//1개 상품에 대한 이미지 여러개는 list에 담아서 마지막에 dto에 추가한다
+				ItemImgDto mdto=new ItemImgDto();
 				mdto.setItem_img_id(rs.getInt(7));
 				mdto.setImg_url(rs.getString(8));
-				mdto.setImg_name(rs.getString(9));
-				dto.setItemImgDto(mdto);
+				mdto.setOri_img_name(rs.getString(9));
+				mdto.setImg_name(rs.getString(10));
+				list.add(mdto);
 			}
+			dto.setItemImgDtoList(list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
