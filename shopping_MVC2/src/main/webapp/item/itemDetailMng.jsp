@@ -81,7 +81,7 @@
         	<%
         		int size=dto.getItemImgDtoList().size();
         		for(int i=1;i<=size;i++){
-        			ItemImgDto mDto=dto.getItemImgDtoList().get(i);
+        			ItemImgDto mDto=dto.getItemImgDtoList().get(i-1);
         			%>
 		            <div>
 		                 <label ><%=mDto.getOri_img_name()%> <%=i%></label><br/>
@@ -93,7 +93,7 @@
 		            </div>	
         			<%
         		}
-        		for(int i=size;i<=5;i++){
+        		for(int i=size+1;i<=5;i++){
         			%>
 		            <div>
 		                 <label>상품 이미지 <%=i%></label>

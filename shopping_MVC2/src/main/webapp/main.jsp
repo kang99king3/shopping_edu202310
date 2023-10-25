@@ -59,7 +59,8 @@
 			out.print("<div class='items'><span>등록된 상품이 없습니다.</span></div>");
 		}else{
 			%>
-			<div class="items" style="width:1350px;">
+<!-- 			<div class="items" style="width:1350px;"> -->
+			<div class="items" style="width:100%;">
 				<%
 					for(ItemDto dto:list){
 						%>

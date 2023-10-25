@@ -92,7 +92,7 @@ public class ItemController extends HttpServlet {
 											   stored_fname,
 											   saveDirectory,
 											   origin_fname,
-											   file.equals("itemImgFile0")?"Y":"N"));
+											   file.equals("itemImgFile1")?"Y":"N"));
 						
 						//getOriginalFileName("filename"): 원본파일명
 						//getFilesystemName("filename"): 실제로 저장된 파일명
@@ -118,7 +118,7 @@ public class ItemController extends HttpServlet {
 			List<ItemDto>list=dao.itemListMng();
 			request.setAttribute("list", list);
 			dispatch("item/itemListMng.jsp", request, response);
-		}else if(command.equals("/itemDetialMng.item")) {
+		}else if(command.equals("/itemDetailMng.item")) {
 			int item_id=Integer.parseInt(request.getParameter("item_id"));
 			ItemDto dto=dao.itemDetailMg(item_id);
 			request.setAttribute("dto", dto);

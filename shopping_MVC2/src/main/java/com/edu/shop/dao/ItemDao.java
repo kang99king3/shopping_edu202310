@@ -141,7 +141,8 @@ public class ItemDao extends DataBase{
 				+ "		    i.stock_number,m.item_img_id, m.img_url, m.ori_img_name, m.img_name "
 				+ " FROM item i JOIN item_img m "
 				+ " ON i.item_id = m.item_id "
-				+ " WHERE i.item_id = ? ";
+				+ " WHERE i.item_id = ? "
+				+ " order by m.repimg_yn desc";
 		
 		try {
 			conn=dataFactory.getConnection();

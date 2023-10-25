@@ -12,10 +12,16 @@
 		location.href="registForm.member";
 	}
 </script>
+<style type="text/css">
+	table{width: 300px; border:1px solid gray; margin: 300px auto;}
+	th{width:100px;}
+	input[name]{border-radius: 5px; width: 200px; height: 30px;}
+	button{border-radius: 5px; width:100%;margin-top: 5px;height: 30px; background-color:#46CCFF}
+</style>
 </head>
 <body>
 <form action="login.member">
-	<table border="1">
+	<table >
 		<tr>
 			<th>아이디</th>
 			<td><input type="email" name="email" /></td>
@@ -26,8 +32,8 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="submit" value="로그인" />
-				<input type="button" value="회원가입" onclick="registForm()" />
+				<button type="submit">로그인</button>
+				<button type="button" onclick="registForm()">회원가입</button>
 			</td>
 		</tr>
 	</table>
